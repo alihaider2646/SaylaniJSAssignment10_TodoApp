@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saylani Js Assignment 10 TODO APP</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+      ::selection {
+        color: rgb(227, 243, 10);
+        background-color: rgb(29, 143, 35);
+      }
+      ::placeholder {
+        color: rgb(29, 143, 35);
+      }
+      .progress-container {
+        width: 100%;
+        height: 4px;
+        background: rgb(227, 243, 10);
+      }
+      .progress-bar {
+        height: 4px;
+        background: rgb(29, 143, 35);
+        width: 0%;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+      }
+      div#todo_div {
+        margin-bottom: 10px;
+        position: sticky;
+        top: 0;
+        text-align: center;
+      }
+      div#mainHeading_counter {
+        color: black;
+        box-shadow: 5px 5px 10px 2px rgb(227, 243, 10);
+        margin-top: 5px;
+        background-image: linear-gradient(
+          to left,
+          rgb(29, 143, 35),
+          rgb(227, 243, 10)
+        );
+        border-radius: 10px;
+      }
+      div#mainHeading_counter:hover {
+        background-image: linear-gradient(
+          to right,
+          rgb(29, 143, 35),
+          rgb(227, 243, 10)
+        );
+        box-shadow: 5px 5px 10px 2px rgb(29, 143, 35) !important;
+      }
+      h1 {
+        font-size: 5rem;
+        margin: 0;
+        padding: 0;
+        text-shadow: 4px 2px 1px white;
+        font-weight: bolder;
+      }
+      h3 {
+        font-size: 2rem;
+        margin: 0;
+        padding: 10px;
+        text-shadow: 2px 2px 1px white;
+        font-weight: bolder;
+      }
+      span {
+        text-shadow: 2px 2px 1px white;
+      }
+      input,
+      select,
+      textarea {
+        font-family: "Times New Roman", Times, serif;
+        color: rgb(29, 143, 35);
+      }
+      input#todo_item {
+        width: 50%;
+        padding: 10px;
+        margin: 20px 0;
+        box-shadow: 5px 5px 10px 2px #888888;
+        border-radius: 5px;
+        border: none;
+        font-size: large;
+      }
+      button {
+        font-family: "Times New Roman", Times, serif;
+        background-image: linear-gradient(
+          to left,
+          rgb(29, 143, 35),
+          rgb(227, 243, 10)
+        );
+        font-weight: bolder;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-image: linear-gradient(
+          to right,
+          rgb(29, 143, 35),
+          rgb(227, 243, 10)
+        );
+      }
+      button#add_btn,
+      button#deleteAll_btn {
+        padding: 10px 20px;
+        box-shadow: 3px 3px 10px 2px #888888;
+        margin: 0 20px;
+        font-size: 20px;
+      }
+      li.todoList {
+        list-style: decimal;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+        text-align: justify;
+      }
+      button.editBtn,
+      button.deleteBtn {
+        font-size: 20px;
+        padding: 5px 10px;
+        margin: 0 10px;
+      }
+      a.top {
+        color: rgb(227, 243, 10);
+        position: fixed;
+        right: 30px;
+        bottom: 15px;
+        font-size: 2.5rem;
+      }
+      a.top:hover {
+        color: rgb(29, 143, 35);
+      }
+
+      /* for responsiveness */
+      @media only screen and (max-width: 600px) {
+        h1 {
+          font-size: 3rem;
+        }
+        button#add_btn,
+        button#deleteAll_btn {
+          font-size: 17px;
+          padding: 10px 20px;
+        }
+        button.editBtn,
+        button.deleteBtn {
+          font-size: 15px;
+          padding: 5px 10px;
+        }
+        input#todo_item {
+          font-size: 15px;
+        }
+        li.todoList {
+          font-size: 1rem;
+        }
+        a.top {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <div id="todo_div">
+      <!-- Scroll Indicator -->
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+      <div class="container" id="mainHeading_counter">
+        <h1>Todo App</h1>
+        <h3>Total Items : <span id="item_count">0</span></h3>
+      </div>
+      <input type="text" id="todo_item" placeholder="Enter any task " />
+      <br />
+      <button id="add_btn" onclick="addTodo()">Add</button>
+      <button id="deleteAll_btn" onclick="deleteAll()">Delete All</button>
+    </div>
+
+    <div id="items_div">
+      <ul id="list"></ul>
+    </div>
+    <a class="top" href="#top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="./app.js"></script>
+    <!-- fontawesome Kit -->
+    <script
+      src="https://kit.fontawesome.com/dfd0da9182.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
